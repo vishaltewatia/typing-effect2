@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untoldcoding</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="new"><br /><br /><br /></div>
+    <div id="typedtext"></div>
+
+    <audio controls autoplay>
+      <source src="music2.mp3" type="audio/mpeg" />
+    </audio>
+    <p>Untoldcoding</p>
+    <script>
+      var aText = new Array(
+        "........Jai Shri Ram .............",
+        "जय सिया राम तेरी जय जय कार",
+        "मुझे दास तू बना ले बस इतनी गुहार",
+        "मेरी सांसो में बसा तू मेरी आँखों में है देख सकता",
+        "कोई भी भक्ति मेरे दिल में बसी है ऐसा कोई लम्हा ना कोई पल जिसमें",
+        "ओह मेरे राम तेरा कोई गुणगान नहीं",
+        "सब कुछ को भुलाके सारी बंदिशे हटके",
+        "मैंने जीवन रेखा तेरे नाम कर दी है",
+        "जय जय राम कर दी है",
+
+        "जय जय राम कर दी है"
+      );
+      var iSpeed = 50; // time delay of print out
+      var iIndex = 1; // start printing array at this posision
+      var iArrLength = aText[0].length; // the length of the text array
+      var iScrollAt = 1; // start scrolling up at this many lines
+
+      var iTextPos = 0; // initialise text position
+      var sContents = ""; // initialise contents variable
+      var iRow; // initialise current row
+
+      function typewriter() {
+        sContents = " ";
+        iRow = Math.max(0, iIndex - iScrollAt);
+        var destination = document.getElementById("typedtext");
+
+        while (iRow < iIndex) {
+          sContents += aText[iRow++] + "<br />";
+        }
+        destination.innerHTML =
+          sContents + aText[iIndex].substring(0, iTextPos) + "_";
+        if (iTextPos++ == iArrLength) {
+          iTextPos = 0;
+          iIndex++;
+          if (iIndex != aText.length) {
+            iArrLength = aText[iIndex].length;
+            setTimeout("typewriter()", 100);
+          }
+        } else {
+          setTimeout("typewriter()", iSpeed);
+        }
+      }
+
+      typewriter();
+    </script>
+  </body>
+</html>
